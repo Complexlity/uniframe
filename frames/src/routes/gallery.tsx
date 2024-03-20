@@ -12,7 +12,9 @@ export const app = new Frog<HonoEnv>({
 app.frame("/:chain/:id", async (c) => {
   const { chain, id } = c.req.param();
   const collection = await getCollection(chain, id);
+  console.log({collection})
   const image = $purifyOne(collection.image, "kodadot_beta");
+  // console.log({image})
   const max = collection.max;
 
   const label = `Browse:${collection.name}[${max}]`;
@@ -34,12 +36,12 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
   if (!buttonValue) {
     throw new Error("The collection should have a maximum")
   }
-  // let max = Number(buttonValue);
-  let max = 34
+  let max = Number(buttonValue);
   if (isNaN(max) || max === 0) {
     throw new Error("The max must be a number");
 
   }
+  max = Math.min(max, 34)
   console.log({ chain, id, curr, max })
 
   //Does not work because it is always initialized to 1 and not the collection maximum
