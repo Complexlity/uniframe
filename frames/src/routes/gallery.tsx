@@ -64,14 +64,8 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
   return c.res({
     image: image,
     intents: [
-
-      <Button
-        action={`/view/${chain}/${id}/${random}`}
-        value={`${max}`}
-      > 🎲 </Button>,
       parseInt(curr) > 1 ? (
         <Button
-
           value={`${max}`}
           action={`/view/${chain}/${id}/${parseInt(curr) - 1}/`}
         >
@@ -81,9 +75,15 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
       ) : null,
       <Button
         value={`${max}`}
-        action={`/view/${chain}/${id}/${parseInt(curr) + 1}/`}>
+        action={`/view/${chain}/${id}/${parseInt(curr) + 1}/`}
+      >
         {" "}
         ➡️{" "}
+      </Button>,
+
+      <Button action={`/view/${chain}/${id}/${random}`} value={`${max}`}>
+        {" "}
+        🎲{" "}
       </Button>,
       <Button.Link href={kodaUrl(chain, id, curr)}>🖼️</Button.Link>,
     ],
