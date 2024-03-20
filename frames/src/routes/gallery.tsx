@@ -34,7 +34,8 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
   if (!buttonValue) {
     throw new Error("The collection should have a maximum")
   }
-  let max = Number(buttonValue);
+  // let max = Number(buttonValue);
+  let max = 34
   if (isNaN(max) || max === 0) {
     throw new Error("The max must be a number");
 
