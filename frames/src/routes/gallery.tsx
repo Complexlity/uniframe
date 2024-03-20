@@ -17,7 +17,8 @@ app.frame("/:chain/:id", async (c) => {
   // console.log({image})
   const max = collection.max;
 
-  const label = `Browse:${collection.name}[${max}]`;
+
+  const label = `Browse:${collection.name}${max ? `[${max}]` : ""}`;
   return c.res({
     title: collection.name,
     image,
