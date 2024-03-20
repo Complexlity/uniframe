@@ -16,13 +16,13 @@ app.frame("/:chain/:id", async (c) => {
   const image = $purifyOne(collection.image, "kodadot_beta");
   // console.log({image})
   const max = collection.max;
-
+  const supply = collection.supply
 
   const label = `Browse:${collection.name}${max ? `[${max}]` : ""}`;
   return c.res({
     title: collection.name,
     image,
-    intents: [<Button action={`/view/${chain}/${id}/1`} value={max}>{label}</Button>],
+    intents: [<Button action={`/view/${chain}/${id}/1`} value={supply}>{label}</Button>],
   });
 });
 
@@ -44,7 +44,7 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
   // }
 
 
-  // if (max) max = Math.min(max, 34)
+
 
   console.log({ chain, id, curr, max })
 
