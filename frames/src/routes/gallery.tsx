@@ -30,7 +30,7 @@ app.frame("/:chain/:id", async (c) => {
 //:curr represents the current item id while :id represents the collection (e.g 106)
 app.frame("/view/:chain/:id/:curr", async (c) => {
 
-  const { chain, id, curr } = c.req.param();
+  let { chain, id, curr } = c.req.param();
   const { buttonValue } = c
 
   // There is no max defined
@@ -38,26 +38,34 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
     throw new Error("The collection should have a maximum")
   }
   let max = Number(buttonValue);
-  if (isNaN(max) || max === 0) {
-    throw new Error("The max must be a number");
+  // if (isNaN(max) || max === 0) {
+  //   throw new Error("The max must be a number");
 
-  }
-  max = Math.min(max, 34)
+  // }
+
+  if (max) max = Math.min(max, 34)
+
   console.log({ chain, id, curr, max })
 
   //Does not work because it is always initialized to 1 and not the collection maximum
   // const max = 1; // todo DOES NOT WORK
 
   //This returs null if the :curr is high like say 60
-  const item = await getItem(chain, id, curr);
+  let item = await getItem(chain, id, curr);
 
-  console.log({item})
+
+  console.log({ item })
+  if (!item) {
+    curr = "1"
+    item = await getItem(chain, id, curr);
+
+  }
 
   const image = $purifyOne(item.image, "kodadot_beta");
 
   //getItem function returns null if the random generated is high
-  const random = Math.floor(Math.random() * max) + 1
-  console.log({random})
+  const random = max ? Math.floor(Math.random() * max) + 1 : curr + 1
+
 
 
 
