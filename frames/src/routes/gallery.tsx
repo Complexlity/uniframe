@@ -43,7 +43,8 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
 
   // }
 
-  if (max) max = Math.min(max, 34)
+
+  // if (max) max = Math.min(max, 34)
 
   console.log({ chain, id, curr, max })
 
@@ -65,6 +66,8 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
 
   //getItem function returns null if the random generated is high
   const random = max ? Math.floor(Math.random() * max) + 1 : curr + 1
+
+  console.log({random})
 
 
 

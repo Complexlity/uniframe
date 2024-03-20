@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "frog dev",
     "wrangler:dev": "wrangler dev src/index.tsx",
-    "wrangler:deploy": "wrangler deploy --minify src/index.tsx"
+    "wrangler:deploy": "wrangler deploy --minify src/index.tsx",
+    "deploy": "npm run wrangler:deploy"
   },
   "dependencies": {
     "@kodadot1/minipfs": "^0.4.3-rc.1",
