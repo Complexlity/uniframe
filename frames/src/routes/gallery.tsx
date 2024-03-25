@@ -22,6 +22,7 @@ app.frame("/:chain/:id", async (c) => {
   return c.res({
     title: collection.name,
     image,
+    imageAspectRatio: "1:1",
     intents: [<Button action={`/view/${chain}/${id}/1`} value={supply}>{label}</Button>],
   });
 });
@@ -75,6 +76,7 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
 
   return c.res({
     image: image,
+    imageAspectRatio: "1:1",
     intents: [
       parseInt(curr) > 1 ? (
         <Button
@@ -98,6 +100,7 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
         🎲{" "}
       </Button>,
       <Button.Link href={kodaUrl(chain, id, curr)}>🖼️</Button.Link>,
+
     ],
   });
 });
