@@ -6,6 +6,7 @@ import { HonoEnv } from "../constants";
 
 
 
+
 export const app = new Frog<HonoEnv>({
 });
 
@@ -20,6 +21,7 @@ app.frame("/:chain/:id", async (c) => {
 
   const label = `Browse:${collection.name}${max ? `[${max}]` : ""}`;
   return c.res({
+    browserLocation: `https://kodadot.xyz/${chain}/collection/${id}`,
     title: collection.name,
     image,
     imageAspectRatio: "1:1",
@@ -75,6 +77,7 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
 
 
   return c.res({
+    browserLocation: `https://kodadot.xyz/${chain}/gallery/${id}-${curr}`,
     image: image,
     imageAspectRatio: "1:1",
     intents: [
@@ -84,7 +87,7 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
           action={`/view/${chain}/${id}/${parseInt(curr) - 1}/`}
         >
           {" "}
-          ⬅️{" "}
+          ←{" "}
         </Button>
       ) : null,
       <Button
@@ -92,15 +95,14 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
         action={`/view/${chain}/${id}/${parseInt(curr) + 1}/`}
       >
         {" "}
-        ➡️{" "}
+        →{" "}
       </Button>,
 
       <Button action={`/view/${chain}/${id}/${random}`} value={`${max}`}>
         {" "}
-        🎲{" "}
+        ↻{" "}
       </Button>,
-      <Button.Link href={kodaUrl(chain, id, curr)}>🖼️</Button.Link>,
-
+      <Button.Link href={kodaUrl(chain, id, curr)}>View</Button.Link>,
     ],
   });
 });
