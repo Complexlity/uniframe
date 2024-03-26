@@ -77,7 +77,6 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
 
 
   return c.res({
-    browserLocation: `https://kodadot.xyz/${chain}/gallery/${id}-${curr}`,
     image: image,
     imageAspectRatio: "1:1",
     intents: [
@@ -104,6 +103,7 @@ app.frame("/view/:chain/:id/:curr", async (c) => {
       </Button>,
       <Button.Link href={kodaUrl(chain, id, curr)}>View</Button.Link>,
     ],
+    browserLocation: `https://kodadot.xyz/${chain}/gallery/${id}-${curr}`,
   });
 });
 
